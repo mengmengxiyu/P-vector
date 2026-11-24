@@ -1,0 +1,32 @@
+Download links of all data used in the paper (retrieved 2026-11-16).
+The data files are not included in this repository. Download them into data/raw/ and extract as shown,
+then run code/prep.py, which writes undirected, unweighted edge lists without self-loops or multi-edges
+to data/clean/.
+
+Real-world networks
+Karate          networkx built-in karate_club_graph (Zachary 1977); nothing to download
+911             https://networks.skewed.de/net/terrorists_911/files/terrorists_911.csv.zip   (Netzschleuder, Krebs 2002; 62 nodes, 152 edges)
+Train bombing   http://konect.cc/files/download.tsv.moreno_train.tar.bz2
+David           http://konect.cc/files/download.tsv.adjnoun_adjacency.tar.bz2   (adjective-noun adjacency in David Copperfield)
+Physicians      http://konect.cc/files/download.tsv.moreno_innovation.tar.bz2   (directed in the source; treated as undirected, 923 edges)
+U.S. Airports   https://nrvis.com/download/data/inf/inf-USAir97.zip
+C elegans       https://nrvis.com/download/data/bio/bio-celegans.zip
+Power-494       https://nrvis.com/download/data/power/power-494-bus.zip   (586 edges after removing the diagonal)
+Asoiaf          http://konect.cc/files/download.tsv.asoiaf.tar.bz2
+Euroroad        http://konect.cc/files/download.tsv.subelj_euroroad.tar.bz2
+U.S. PowerGrid  http://konect.cc/files/download.tsv.opsahl-powergrid.tar.bz2
+
+Graph-classification datasets (TUDataset; graph structure only, node and edge attributes are not used)
+MUTAG          https://www.chrsmrrs.com/graphkerneldatasets/MUTAG.zip
+PROTEINS       https://www.chrsmrrs.com/graphkerneldatasets/PROTEINS.zip
+IMDB-BINARY    https://www.chrsmrrs.com/graphkerneldatasets/IMDB-BINARY.zip
+IMDB-MULTI     https://www.chrsmrrs.com/graphkerneldatasets/IMDB-MULTI.zip
+REDDIT-BINARY  https://www.chrsmrrs.com/graphkerneldatasets/REDDIT-BINARY.zip
+
+Extraction (run in data/raw/)
+  for f in *.tar.bz2; do tar xjf "$f"; done                  # KONECT archives create their own folders
+  unzip terrorists_911.csv.zip -d terrorists_911
+  unzip inf-USAir97.zip   -d inf-USAir97
+  unzip bio-celegans.zip  -d bio-celegans
+  unzip power-494-bus.zip -d power-494-bus
+  mkdir -p tu && for d in MUTAG PROTEINS IMDB-BINARY IMDB-MULTI REDDIT-BINARY; do unzip $d.zip -d tu; done
